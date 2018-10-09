@@ -2,7 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-url="http://www.fiftythree.org/etherkiller/"
+url = "http://www.fiftythree.org/etherkiller/"
 
 def main(url: str):
     image_regex = re.compile(".jpg$|.png$|.gif$")
@@ -13,6 +13,7 @@ def main(url: str):
     html = BeautifulSoup(page_resp.text, "html5lib")
     images_found = html.find_all("a", {"href": image_regex})
     if images_found:
+        print ("Found",len(images_found),"images")
         for image in images_found:
             save_image(image)
 
